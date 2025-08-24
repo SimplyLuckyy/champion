@@ -1,10 +1,12 @@
-from text.intro import *
+from text.descriptions import boarder
 
 def main ():
 
     print(boarder + "\nPLACEHOLDER FOR INTRO\n" + boarder)
     time.sleep(1)
     player = choose_champion()
+
+
 
     #transform into the Check Stats function
 
@@ -16,7 +18,6 @@ Health: {player.health}
 Gold: {player.gold}
 Attack: {player.attack}
 Defense: {player.defense}
-Extra Ability: {player.ability}
 {boarder}""")
 
 if __name__ == "__main__":
