@@ -1,14 +1,17 @@
 import time
 from text import *
-from player.playerinfo import choose_champion
 from systems.roomgen import *
+from systems.choosechampion import *
 
-
+# reminder to put "> " at the start of all player inputs for clarity
 
 def main ():
     
 
     floor_count = 1
+    room_list = [combat1, combat2, combat3,
+                social1, social2, social3, 
+                loot1, loot2, loot3]
     
 
     introduction()
@@ -19,8 +22,7 @@ def main ():
     else:
         print("You descend to the next floor...\n")
     
-    room_gen(floor_count)
-    
+    room_gen(floor_count, room_list, player)
 
 if __name__ == "__main__":
     main()

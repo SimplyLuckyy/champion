@@ -1,25 +1,35 @@
-from text import combat1, combat2, combat3, loot1, loot2, loot3, social1, social2, social3, rest_room, boss_room, ending
+from text import boarder, combat1, combat2, combat3, loot1, loot2, loot3, social1, social2, social3, rest_room, boss_room, ending
 import random
+import time
 
-# Implement a way to prevent loot & social encounters from repeating? Or keep as is?
+def room_gen(floor_count, room_list, player):
+    boss_floor = 5 + 1
+    limit_list = [social1, social2, social3, 
+                loot1, loot2, loot3]
 
-def room_gen(floor_count):
-    boss_floor = 10 + 1
+
 
     if floor_count == boss_floor:
-        boss_room()
+        print(f"{boarder}\n")
+        boss_room(player)
     elif floor_count % 5 == 0:
-        rest_room()
+        print(boarder)
+        print(f"FLOOR {floor_count}\n")
+        rest_room(player)
     else:
-        room_list = [[combat1, combat2, combat3],
-                    [social1, social2, social3], 
-                    [loot1, loot2, loot3]]
-        room = random.choice(room_list[random.randint(0,2)])
-        room()
-        
+        print(boarder)
+        print(f"FLOOR {floor_count}\n")
+        room_type = random.randint(0, len(room_list) -1)
+        room_list[room_type](player)
+        if room_list[room_type] in limit_list:
+            del room_list[room_type]
     
     if floor_count != boss_floor: 
         floor_count += 1
-        room_gen(floor_count)
+        time.sleep(1)
+        print("You descend to the next floor...")
+        time.sleep(1)
+        room_gen(floor_count, room_list, player)
     else:
-        ending()
+        print(f"{boarder}\n")
+        ending(player)
