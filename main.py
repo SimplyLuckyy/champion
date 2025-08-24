@@ -1,24 +1,26 @@
-from text.descriptions import boarder
+import time
+from text import *
+from player.playerinfo import choose_champion
+from systems.roomgen import *
+
+
 
 def main ():
+    
 
-    print(boarder + "\nPLACEHOLDER FOR INTRO\n" + boarder)
+    floor_count = 1
+    
+
+    introduction()
     time.sleep(1)
-    player = choose_champion()
-
-
-
-    #transform into the Check Stats function
-
-    print(f"""{boarder}STATS
-
-Class: {player.champion}
-Health: {player.health}
-{player.energyname}: {player.energy}
-Gold: {player.gold}
-Attack: {player.attack}
-Defense: {player.defense}
-{boarder}""")
+    player = choose_champion(None)
+    if floor_count == 1:
+        first_floor_intro()
+    else:
+        print("You descend to the next floor...\n")
+    
+    room_gen(floor_count)
+    
 
 if __name__ == "__main__":
     main()
