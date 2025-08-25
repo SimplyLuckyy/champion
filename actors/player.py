@@ -1,8 +1,6 @@
-import time
-
 class Player:
     def __init__(self):
-        self.champion = None
+        self.name = None
         self.health = 100
         self.energy = 100
         self.gold = 20
@@ -12,26 +10,27 @@ class Player:
         self.energyname = "Stamina"
         self.keeneye = False
         self.arcaneknowledge = False
-        self.items = []
+        # self.fightingspirit = False --- Might include?
+        self.items = ["Spellbook", "Barbed Arrow"]
 
 class Warrior(Player):
     def __init__(self):
         super().__init__()
-        self.champion = "Warrior"
+        self.name = "Warrior"
         self.attack = 10
         self.defense = 10
 
 class Rogue(Player):
     def __init__(self):
         super().__init__()
-        self.champion = "Rogue"
+        self.name = "Rogue"
         self.defense = 10
         self.keeneye = True
 
 class Mage(Player):
     def __init__(self):
         super().__init__()
-        self.champion = "Mage"
+        self.name = "Mage"
         self.attack = 10
         self.energyname = "Mana"
         self.arcaneknowledge = True
@@ -39,7 +38,7 @@ class Mage(Player):
 class Debug(Player):
     def __init__(self):
         super().__init__()
-        self.champion = "Developer"
+        self.name = "Developer"
         self.attack = 30
         self.defense = 30
         self.keeneye = True

@@ -1,4 +1,4 @@
-from player.playerinfo import Player
+from actors.player import Player
 from text import *
 
 def choose_champion(champion):
@@ -29,11 +29,11 @@ def choose_champion(champion):
     else:
         print("Invalid Champion\n")
         time.sleep(1)
-        choose_champion(player_temp)
+        return choose_champion(player_temp)
     
     print("Confirm your champion? [y/n]\n")
     if input("> ").lower() == "y":
-        print(f"\nYou are the {player_temp.champion}. At any time you may type 'stats' to view your stats.\n")
+        print(f"\nYou are the {player_temp.name}. At any time you may type 'stats' to view your stats.\n")
     else:
         choose_champion(player_temp)
     return player_temp

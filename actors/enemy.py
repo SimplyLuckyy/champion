@@ -1,0 +1,39 @@
+# Numbers are placeholders. Balance later
+
+class Enemy:
+    def __init__(self):
+        self.health = 0
+        self.attack = 0
+        self.defense = 0
+
+class Skeleton(Enemy):
+    def __init__(self):
+        super().__init__()
+        self.name = "Skeleton"
+        self.health = 25
+        self.attack = 5
+        self.defense = 5
+
+class Spider(Enemy):
+    def __init__(self):
+        super().__init__()
+        self.name = "Spider"
+        self.health = 50
+        self.attack = 5
+        self.defense = 3
+
+class Bat(Enemy):
+    def __init__(self):
+        super().__init__()
+        self.name = "Bat"
+        self.health = 40
+        self.attack = 3
+        self.defense = 8
+
+class Boss(Enemy):
+    def __init__(self):
+        super().__init__()
+        self.name = "temp"
+        self.health = 200
+        self.attack = 20
+        self.defense = 20

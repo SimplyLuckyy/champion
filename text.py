@@ -1,5 +1,5 @@
 import time
-from player.playerinfo import *
+from actors.player import *
 
 boarder = "=" * 20
 
