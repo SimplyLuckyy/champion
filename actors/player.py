@@ -11,7 +11,7 @@ class Player:
         self.keeneye = False
         self.arcaneknowledge = False
         # self.fightingspirit = False --- Might include?
-        self.items = ["Spellbook", "Barbed Arrow"]
+        self.items = []
 
 class Warrior(Player):
     def __init__(self):

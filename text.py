@@ -19,12 +19,12 @@ def debug_description():
     time.sleep(1)
     print("\nPlaceholder for Developer\n")
 
-def view_stats():
+def view_stats(player):
     print(f"""
 {boarder}
 STATS
 
-Class: {player.champion}
+Class: {player.name}
 Health: {player.health}
 {player.energyname}: {player.energy}
 Gold: {player.gold}

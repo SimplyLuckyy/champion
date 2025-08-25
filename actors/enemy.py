@@ -10,8 +10,8 @@ class Skeleton(Enemy):
     def __init__(self):
         super().__init__()
         self.name = "Skeleton"
-        self.health = 25
-        self.attack = 5
+        self.health = 40
+        self.attack = 20
         self.defense = 5
 
 class Spider(Enemy):

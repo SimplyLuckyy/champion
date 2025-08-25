@@ -27,7 +27,9 @@ def main():
     else:
         print("You descend to the next floor...\n")
     
-    dodamage(player, enemy_temp)
+    battle(player, enemy_temp)
+
+    print("this shouldn't display if battle lost")
 
     '''
     room_gen(floor_count, room_list, player)
@@ -38,7 +40,7 @@ def main():
     if input("> ").lower() == "y":
         main()
     '''
-# write game over & replay function (Take stuff from main put it in a game() funct. When game ends (when player dies) ask if want to continue. Runs game recursively)
+
 
 if __name__ == "__main__":
     main()
