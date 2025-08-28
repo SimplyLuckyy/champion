@@ -11,13 +11,13 @@ class Skeleton(Enemy):
         super().__init__()
         self.name = "Skeleton"
         self.health = 40
-        self.attack = 20
+        self.attack = 10
         self.defense = 5
 
 class Spider(Enemy):
     def __init__(self):
         super().__init__()
-        self.name = "Spider"
+        self.name = "Giant Spider"
         self.health = 50
         self.attack = 5
         self.defense = 3
@@ -25,7 +25,7 @@ class Spider(Enemy):
 class Bat(Enemy):
     def __init__(self):
         super().__init__()
-        self.name = "Bat"
+        self.name = "Giant Bat"
         self.health = 40
         self.attack = 3
         self.defense = 8

@@ -1,9 +1,11 @@
 from text import boarder, view_stats
 from actors.player import Player
 from actors.enemy import Enemy
-from main import main
 import random
 import time
+
+global restore
+restore = 25
 
 def battle(player, enemy):
     while True:
@@ -15,14 +17,20 @@ def battle(player, enemy):
         print(f"enemy health: {enemy.health}\n")
         if enemy.health <= 0:
             break
-    if player.health <= 0:
+    healthcheck(player, enemy)
+
+
+def healthcheck(player, enemy):
+    if player.health <= 0 and player.health > -(restore):
         if player.potions > 0:
             usepotion(player)
+            playerturn(player, enemy)
+            battle(player, enemy)
         else:
             print("Your champion has fallen\n")
-            gameover()
-    if enemy.health <= 0:
-        print("Foe Defeated!\n")
+            print(boarder + "\nGAME OVER\n" + Boarder)
+            exit()
+
 
 def playerturn(player, enemy):
     print("What will you do?\n")
@@ -58,6 +66,8 @@ def dodamage(attacker, defender, attack_type="regular"):
             attacker.energy -= 5
     time.sleep(1)
     print(f"{attacker.name} deals {damage_delt} damage")
+    if damage_delt <= 0:
+        return
     if isinstance(defender, Player) and "Magic Sheild" in defender.items: 
         if not magicsheild(defender): 
             defender.health -= damage_delt
@@ -86,6 +96,7 @@ def magicsheild(player):
         print("Damge not negated\n")
         return False
     else:
+        print("Invaild Choice\n")
         return magicsheild(player)
 
 def combatitem(player, damage_delt):
@@ -107,6 +118,7 @@ def combatitem(player, damage_delt):
             print("The arrow was not used.\n")
             return False, damage_delt
         else:
+            print("Invaild Choice\n")
             return combatitem(player)
     if "Spellbook" in player.items:
         print("Would you like to use Spellbook? [y/n]\n")
@@ -130,21 +142,28 @@ def combatitem(player, damage_delt):
 def usepotion(player):
     print(f"Used Potion! 25 Health and 25 {player.energyname} restored.\n")
     player.potions -= 1
-    player.health += 25
-    player.energy += 25
+    player.health += restore
+    player.energy += restore
 
-def gameover():
-    
-    print("Play Again? [y/n]\n")
+
+def next_room(player):
+    print("Continue your descent?\n")
+    print("- Continue")
+    print("- Stats")
+    if player.potions > 0:
+        print("- Use Potion")
+    print("")
+
     choice = input("> ").lower()
-    if choice == "y":
-        main()
-    elif choice == "n":
-        exit()
+    if choice == "continue":
+        pass
+    elif (choice == "potion" or choice == "use potion") and player.potions > 0:
+        usepotion(player)
+        next_room(player)
+    elif choice == "stats":
+        view_stats(player)
+        next_room(player)
     else:
-        print("Ivalid Choice\n")
-        gameover()
+        print("Invalid Choice")
+        next_room(player)
 
-    
-def win():
-    pass

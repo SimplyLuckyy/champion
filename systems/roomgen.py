@@ -1,13 +1,12 @@
-from text import boarder, combat1, combat2, combat3, loot1, loot2, loot3, social1, social2, social3, rest_room, boss_room, ending
-import random
+from text import boarder, ending
+from floors import *
 import time
+import random
 
 def room_gen(floor_count, room_list, player):
     boss_floor = 5 + 1
     limit_list = [social1, social2, social3, 
                 loot1, loot2, loot3]
-
-
 
     if floor_count == boss_floor:
         print(f"{boarder}\n")
