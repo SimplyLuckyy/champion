@@ -22,6 +22,7 @@ class Spider(Enemy):
         self.attack = 5
         self.defense = 3
 
+# Change to something else. Something Armored or Flying (Rogues keen eye allows them to see weak points)
 class Bat(Enemy):
     def __init__(self):
         super().__init__()

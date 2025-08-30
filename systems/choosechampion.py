@@ -6,19 +6,19 @@ def choose_champion(champion):
     player_temp = champion
 
     print("""Who is your champion?\n
-- Warrior
-- Rogue
-- Mage\n""")
-    champion_class = input("> ").lower()
-    if champion_class == "warrior":
+1. Warrior
+2. Rogue
+3. Mage\n""")
+    champion_class = input("> ")
+    if champion_class == "1":
         warrior_description()
         time.sleep(1)
         player_temp = Warrior()
-    elif champion_class == "rogue":
+    elif champion_class == "2":
         rogue_description()
         time.sleep(1)
         player_temp = Rogue()
-    elif champion_class == "mage":
+    elif champion_class == "3":
         mage_description()
         time.sleep(1)
         player_temp = Mage()
@@ -32,8 +32,12 @@ def choose_champion(champion):
         return choose_champion(player_temp)
     
     print("Confirm your champion? [y/n]\n")
-    if input("> ").lower() == "y":
+    choice = input("> ").lower()
+    if choice == "y":
         print(f"\nYou are the {player_temp.name}. At any time you may type 'stats' to view your stats.\n")
+    elif choice == "n":
+        choose_champion(player_temp)
     else:
+        print("Invalid Choice")
         choose_champion(player_temp)
     return player_temp
