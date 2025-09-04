@@ -5,7 +5,7 @@ from text import view_stats
 
 # todo list:
 # Combat Rooms - DONE
-# Social Rooms - 1/3
+# Social Rooms - 2/3
 # Loot Rooms - WIP
 global potion_cost, spellbook_cost, payoff, stat_cost
 potion_cost = 3
@@ -107,6 +107,7 @@ def buyitems(player, cost):
         buypotions(player)
 
 # Magic spikes + elixirs. Lose stamina. Way to lose gold?
+# Magic fountain. Throw in gold for better elixir.
 def social2(player):
     time.sleep(1)
     print("This is social2")
@@ -122,11 +123,12 @@ def social3(player):
     time.sleep(1)
     print("Adventurer Placeholder.\n")
     time.sleep(1)
+    temp = player.health
     if not player.keeneye:
         payoffencounter(player, player.health, "health")
     else:
         print("Keen Eye Trigger Placeholder\n")
-    if player.health == 1:
+    if temp == 1:
         print("You escape to the next room!\n")
     else:
         adventurer(player)
@@ -147,6 +149,10 @@ def payoffencounter(player, stat, name):
                 damage -= 1
         print(f"You lose {damage} {name}!\n")
         stat -= damage
+    if name == "health":
+        player.health = stat
+    else:
+        player.energy = stat
     
 def adventurer(player):
     time.sleep(1)
@@ -178,7 +184,7 @@ def adventurer(player):
         print("Invalid Choice\n")
         adventurer(player)
 
-def spikes(plater):
+def spikes(player):
     pass
 
 # Gold
