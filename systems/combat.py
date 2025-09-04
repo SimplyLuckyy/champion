@@ -4,19 +4,19 @@ from actors.enemy import Enemy
 import random
 import time
 
+
+
 global restore
 restore = 25
 
 global items_list
 items_list = ["Barbed Arrow", "Spellbook", "Magic Shield", "Minor Explosive", "Major Explosive", "Elixir of Fortification", "Potent Elixir of Fortification"]
 
-global flatdamageregular
-global flatdamagestrong
+global flatdamageregular, flatdamagestrong
 flatdamageregular = 20
 flatdamagestrong = 30
 
-global flatreductionregular
-global flatreductionstrong
+global flatreductionregular, flatreductionstrong
 flatreductionregular = 10
 flatreductionstrong = 20
 
@@ -134,7 +134,7 @@ def dodamage(attacker, defender, attack_type="regular"):
     # Elixir
     if isinstance(defender, Player):
         if items_list[5] in defender.items or items_list[6] in defender.items:
-            damage_delt = useelixir(player, damage_delt)
+            damage_delt = useelixir(defender, damage_delt)
     # Magic Shield
         if items_list[2] in defender.items: 
             if not magicshield(defender): 
@@ -151,17 +151,17 @@ def dodamage(attacker, defender, attack_type="regular"):
         
 def magicshield(player):
     print("Would you like to negate damage? [y/n]\n")
-    response = input("> ").lower()
-    if response == "y":
+    choice = input("> ").lower()
+    if choice == "y":
         time.sleep(1)
         print("Damage Negated!\n")
         player.items.remove("Magic Shield")
         print("The Magic Shield shatters...")
         return True
-    elif response == "stats":
+    elif choice == "stats":
         view_stats()
         return magicshield(player)
-    elif response == "n":
+    elif choice == "n":
         print("Damge not negated\n")
         return False
     else:
@@ -173,17 +173,17 @@ def combatitem(player, damage_delt):
 
     if "Barbed Arrow" in player.items:
         print("Would you like to use the Barbed Arrow? [y/n]\n")
-        response = input("> ").lower()
-        if response == "y":
+        choice = input("> ").lower()
+        if choice == "y":
             time.sleep(1)
             damage_delt += damage_bonus
             print(f"Damage increased to {damage_delt}!\n")
             player.items.remove("Barbed Arrow")
             print("The arrow was used up...")
-        elif response == "stats":
+        elif choice == "stats":
             view_stats(player)
             return combatitem(player, damage_delt)
-        elif response == "n":
+        elif choice == "n":
             print("The arrow was not used.\n")
             return False, damage_delt
         else:
@@ -191,17 +191,17 @@ def combatitem(player, damage_delt):
             return combatitem(player)
     if "Spellbook" in player.items:
         print("Would you like to use Spellbook? [y/n]\n")
-        response = input("> ").lower()
-        if response == "y":
+        choice = input("> ").lower()
+        if choice == "y":
             time.sleep(1)
             damage_delt += damage_bonus
             print(f"Damage increased to {damage_delt}!\n")
             player.items.remove("Spellbook")
             print("The Spellbook crumbles into dust...")
-        elif response == "stats":
+        elif choice == "stats":
             view_stats(player)
             return combatitem(player, damage_delt)
-        elif response == "n":
+        elif choice == "n":
             print("The Spellbook was not used.\n")
             return False, damage_delt
         else:
@@ -209,38 +209,38 @@ def combatitem(player, damage_delt):
     return True, damage_delt
 
 def useelixir(player, damage_delt):
-    if items_list[5] in defender.items:
+    if items_list[5] in player.items:
         print(f"Would you like to reduce damage by {flatreductionregular}? [y/n]\n")
         choice = input("> ").lower()
-        if response == "y":
+        if choice == "y":
             time.sleep(1)
             print(f"Damage Reduced by {flatreductionregular}!\n")
             player.items.remove("Elixir of Fortification")
             damage_delt -= flatreductionregular
             return damage_delt
-        elif response == "stats":
+        elif choice == "stats":
             view_stats()
             return useelixir(player, damage_delt)
-        elif response == "n":
+        elif choice == "n":
             print("Damge not reduced\n")
             return damage_delt
         else:
             print("Invaild Choice\n")
             return useelixir(player, damage_delt)
             
-    elif items_list[6] in defender.items:
+    elif items_list[6] in player.items:
         print(f"Would you like to reduce damage by {flatreductionstrong}? [y/n]\n")
         choice = input("> ").lower()
-        if response == "y":
+        if choice == "y":
             time.sleep(1)
             print(f"Damage Reduced by {flatreductionstrong}!\n")
             player.items.remove("Potent Elixir of Fortification")
             damage_delt -= flatreductionstrong
             return damage_delt
-        elif response == "stats":
+        elif choice == "stats":
             view_stats()
             return useelixir(player, damage_delt)
-        elif response == "n":
+        elif choice == "n":
             print("Damge not reduced\n")
             return damage_delt
         else:

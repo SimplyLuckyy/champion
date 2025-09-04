@@ -34,7 +34,7 @@ Attack: {player.attack}
 Defense: {player.defense}""")
     if len(player.items) > 0:
         print(f"Items: {player.items}")
-print(f"\n{boarder}")
+print(f"\n{boarder}\n")
 
 
 
