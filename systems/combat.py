@@ -80,6 +80,7 @@ def playerturn(player, enemy):
     print("")
 
     choice = input("> ").lower()
+    print("")
     if choice == "1":
         dodamage(player, enemy, "regular")
     elif choice == "2":
@@ -188,7 +189,7 @@ def combatitem(player, damage_delt):
             return False, damage_delt
         else:
             print("Invaild Choice\n")
-            return combatitem(player)
+            return combatitem(player, damage_delt)
     if "Spellbook" in player.items:
         print("Would you like to use Spellbook? [y/n]\n")
         choice = input("> ").lower()
@@ -205,7 +206,7 @@ def combatitem(player, damage_delt):
             print("The Spellbook was not used.\n")
             return False, damage_delt
         else:
-            return combatitem(player)
+            return combatitem(player, damage_delt)
     return True, damage_delt
 
 def useelixir(player, damage_delt):
@@ -267,6 +268,7 @@ def next_room(player):
     print("")
 
     choice = input("> ").lower()
+    print("")
     if choice == "1":
         pass
     elif choice == "3" and player.potions > 0:
@@ -276,7 +278,7 @@ def next_room(player):
         view_stats(player)
         next_room(player)
     else:
-        print("Invalid Choice")
+        print("Invalid Choice\n")
         next_room(player)
 
 # Brainstorm:

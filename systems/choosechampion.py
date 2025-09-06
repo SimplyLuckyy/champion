@@ -39,6 +39,6 @@ def choose_champion(champion):
     elif choice == "n":
         choose_champion(player_temp)
     else:
-        print("Invalid Choice")
+        print("Invalid Choice\n")
         choose_champion(player_temp)
     return player_temp

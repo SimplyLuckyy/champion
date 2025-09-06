@@ -34,7 +34,7 @@ Attack: {player.attack}
 Defense: {player.defense}""")
     if len(player.items) > 0:
         print(f"Items: {player.items}")
-print(f"\n{boarder}\n")
+    print(f"{boarder}\n")
 
 
 
@@ -49,4 +49,6 @@ def first_floor_intro():
 
 def ending(player):
     time.sleep(1)
+    print(boarder)
     print("Placeholder for ending")
+    print(boarder)
