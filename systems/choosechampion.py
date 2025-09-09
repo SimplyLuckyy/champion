@@ -34,11 +34,13 @@ def choose_champion(champion):
     
     print("Confirm your champion? [y/n]\n")
     choice = input("> ").lower()
+    print("")
     if choice == "y":
-        print(f"\nYou are the {player_temp.name}. At any time you may type 'stats' to view your stats.\n")
+        print(f"You are the {player_temp.name}. At any time you may type 'stats' to view your stats.\n")
+        return player_temp
     elif choice == "n":
-        choose_champion(player_temp)
+        return choose_champion(player_temp)
     else:
         print("Invalid Choice\n")
-        choose_champion(player_temp)
-    return player_temp
+        return choose_champion(player_temp)
+    

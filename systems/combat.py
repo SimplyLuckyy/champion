@@ -23,10 +23,13 @@ flatreductionstrong = 20
 def battle(player, enemy):
     while True:
         dodamage(enemy, player, "regular")
+        time.sleep(1)
         print(f"player health: {player.health}\n")
         if player.health <= 0:
             break
+        time.sleep(1)
         playerturn(player, enemy)
+        time.sleep(1)
         print(f"enemy health: {enemy.health}\n")
         if enemy.health <= 0:
             break
@@ -53,6 +56,10 @@ def playerturn(player, enemy):
     can_use_potion = False
     can_use_item1_1 = False
     can_use_item1_2 = False
+    energy_cost = 10
+
+    if player.energyname == "Mana":
+        energy_cost = 5
 
     if player.potions > 0:
         print("3. Use Potion")
@@ -83,8 +90,12 @@ def playerturn(player, enemy):
     print("")
     if choice == "1":
         dodamage(player, enemy, "regular")
-    elif choice == "2":
+    elif choice == "2" and player.energy >= energy_cost:
         dodamage(player, enemy, "strong")
+    elif choice == "2" and player.energy < energy_cost:
+        time.sleep(1)
+        print("But you didn't have enough energy!")
+        dodamage(player, enemy, "regular")
 
     # Optional Additions
     elif choice == "3" and can_use_potion:
@@ -143,7 +154,7 @@ def dodamage(attacker, defender, attack_type="regular"):
             return
     # Barbed Arrow & Spellbook    
     if isinstance(attacker, Player) and (items_list[0] in attacker.items or items_list[1] in attacker.items):
-        (using, damage_delt) = combatitem(attacker, damage_delt)
+        (using, damage_delt) = combatitem(attacker, damage_delt, attack_type)
         if using:
             defender.health -= damage_delt
             return
@@ -169,44 +180,50 @@ def magicshield(player):
         print("Invaild Choice\n")
         return magicshield(player)
 
-def combatitem(player, damage_delt):
-    damage_bonus = 5
+# Change to negating defense
+def combatitem(player, damage_delt, attack_type):
+    if attack_type == "strong":
+        multiplier = 3
+    else:
+        multiplier = 2
 
     if "Barbed Arrow" in player.items:
         print("Would you like to use the Barbed Arrow? [y/n]\n")
         choice = input("> ").lower()
+        print("")
         if choice == "y":
             time.sleep(1)
-            damage_delt += damage_bonus
+            damage_delt = player.attack * multiplier
             print(f"Damage increased to {damage_delt}!\n")
             player.items.remove("Barbed Arrow")
             print("The arrow was used up...")
         elif choice == "stats":
             view_stats(player)
-            return combatitem(player, damage_delt)
+            return combatitem(player, damage_delt, attack_type)
         elif choice == "n":
             print("The arrow was not used.\n")
             return False, damage_delt
         else:
             print("Invaild Choice\n")
-            return combatitem(player, damage_delt)
+            return combatitem(player, damage_delt, attack_type)
     if "Spellbook" in player.items:
         print("Would you like to use Spellbook? [y/n]\n")
         choice = input("> ").lower()
+        print("")
         if choice == "y":
             time.sleep(1)
-            damage_delt += damage_bonus
+            damage_delt = player.attack * multiplier
             print(f"Damage increased to {damage_delt}!\n")
             player.items.remove("Spellbook")
             print("The Spellbook crumbles into dust...")
         elif choice == "stats":
             view_stats(player)
-            return combatitem(player, damage_delt)
+            return combatitem(player, damage_delt, attack_type)
         elif choice == "n":
             print("The Spellbook was not used.\n")
             return False, damage_delt
         else:
-            return combatitem(player, damage_delt)
+            return combatitem(player, damage_delt, attack_type)
     return True, damage_delt
 
 def useelixir(player, damage_delt):
@@ -249,6 +266,7 @@ def useelixir(player, damage_delt):
             return useelixir(player, damage_delt)
 
 def usepotion(player):
+    time.sleep(1)
     print(f"Used Potion! 25 Health and 25 {player.energyname} restored.\n")
     player.potions -= 1
     player.health += restore
@@ -257,6 +275,7 @@ def usepotion(player):
         player.health = 100
     if player.energy > 100:
         player.energy = 100
+    time.sleep(1)
 
 
 def next_room(player):
@@ -285,3 +304,4 @@ def next_room(player):
 # If Explosives are flat damage might want to buff barbed arrow & spellbook.
 # Maybe Barbed Arrow & Spellbook do lingering damage? (Barbs cause injury, Spell is burning?)
 # Or maybe they change the multiplier instead? 
+# They will negate defense instead, to match magic shield

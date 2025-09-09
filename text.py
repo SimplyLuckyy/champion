@@ -21,8 +21,7 @@ def debug_description():
     print("\nPlaceholder for Developer\n")
 
 def view_stats(player):
-    print(f"""
-{boarder}
+    print(f"""{boarder}
 STATS
 
 Class: {player.name}

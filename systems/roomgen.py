@@ -20,6 +20,7 @@ def room_gen(floor_count, room_list, player):
         print(f"FLOOR {floor_count}\n")
         room_type = random.randint(0, len(room_list) -1)
         room_list[room_type](player)
+    
         if room_list[room_type] in limit_list:
             del room_list[room_type]
     

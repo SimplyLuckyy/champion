@@ -1,6 +1,6 @@
 import time
 from actors.enemy import *
-from systems.combat import battle, next_room, items_list
+from systems.combat import battle, next_room, items_list, playerturn
 from text import view_stats
 
 
@@ -56,6 +56,7 @@ def social1(player):
         print("Player has Arcane Knowledge\n")
         time.sleep(1)
         buyitems(player, spellbook_cost)
+    time.sleep(1)
     next_room(player)
 
 def buyitems(player, cost):
@@ -70,59 +71,95 @@ def buyitems(player, cost):
     if choice == "y":
         time.sleep(1)
         if cost == potion_cost:
-            print("\nHow many potions do you want? [Integer]\n")
+            print("How many potions do you want? [Integer]\n")
             choice = input("> ")
             print("")
             time.sleep(1)
             while true_int == False:
                 try:
-                    int(choice)
+                    if int(choice) == 0:
+                        print("Input an integer greater than 0.\n")
+                        true_int = False
+                        choice = input("> ")
+                        print("")
+                    else:
+                        true_int = True
                 except Exception:
                     print("Not an integer. Input an integer.\n")
                     choice = input("> ")
                     print("")
 
             if (int(choice) * potion_cost) > player.gold:
+                time.sleep(1)
                 print("Not enough gold.\n")
+                time.sleep(1)
                 buyitems(player, cost_temp)
+            elif int(choice) == 0:
+                time.sleep(1)
+
             else:
-                print(f"\nBuy {choice} potions for {int(choice) * potion_cost} gold? [y/n]\n")
+                print(f"Buy {choice} potions for {int(choice) * potion_cost} gold? [y/n]\n")
                 potion_count = int(choice)
                 choice = input("> ").lower()
+                print("")
                 if choice == "y":
-                    print("\nTraded potions for gold.\n")
+                    time.sleep(1)
+                    print("Traded potions for gold.\n")
                     player.potions += potion_count
                     player.gold -= potion_count * potion_cost
-                if choice == "n":
-                    print("\nDeclined trade.\n")
+                elif choice == "n":
+                    time.sleep(1)
+                    print("Declined trade.\n")
+                    time.sleep(1)
+                    buyitems(player, cost_temp)
+                else:
+                    time.sleep(1)
+                    print("invalid Choice\n")
+                    time.sleep(1)
                     buyitems(player, cost_temp)
         if cost == spellbook_cost:
-            print("\nSpellbook obtained.\n")
+            time.sleep(1)
+            print(f"You recieved the {items_list[1]}!")
+            time.sleep(1)
+            print(f"The {items_list[1]} allows you to negate all damage once.")
             player.items.append(items_list[1])
+            player.gold -= spellbook_cost
 
     elif choice == "n":
+        time.sleep(1)
         print("Trade declined.\n")
         return
     elif choice == "stats":
+        time.sleep(1)
         view_stats(player)
+        time.sleep(1)
         buyitems(player, cost_temp)
     else:
+        time.sleep(1)
         print("Invalid Choice\n")
+        time.sleep(1)
         buyitems(player, cost_temp)
 
 # Magic spikes + elixirs. Lose stamina. Way to lose gold?
 # Magic fountain. Throw in gold for better elixir.
-def social2(player):
+def social2(player, started=False):
+    if started == False:
+        time.sleep(1)
+        print("This is social2")
+        time.sleep(1)
+        print("Spikes placeholder\n")
+
     time.sleep(1)
-    print("This is social2")
-    time.sleep(1)
-    print("Spikes placeholder\n")
+    print("What will you do?\n")
     print("1. Attempt to cross")
     print("2. Ignore\n")
     choice = input("> ")
+    print("")
     time.sleep(1)
-    while choice not in ["1", "2"]:
+    while choice not in ["1", "2", "stats"]:
         print("Invalid Choice.\n")
+        time.sleep(1)
+        print("What will you do?\n")
         print(f"1. Attempt to cross")
         print("2. Ignore\n")
         choice = input("> ")
@@ -134,26 +171,38 @@ def social2(player):
         else:
             print("Arcane Knowledge Trigger placeholder\n")
         if not player.arcaneknowledge and temp < stat_cost:
-            print("You left to the next room.\n")
+            print("You left to the next room.")
         else:
             spikes(player)
+    elif choice == "2":
+        time.sleep(1)
+        print("You ignore the spike trap.")
     else:
         time.sleep(1)
-        print("You ignore the spike trap.\n")
+        view_stats(player)
+        social2(player, True)
+    if started == True:
+        return
+    time.sleep(1)
+    print("")
     next_room(player)
 
 # Adventurer + explosives. Lose hp and potentially gold.
 # Add option to ignore encounter
-def social3(player):
+def social3(player, started=False):
+    if started == False:
+        time.sleep(1)
+        print("This is social3\n")
+        time.sleep(1)
+        print("You see a distracted and nervous adventurer in the center of the rooom.\n")
     time.sleep(1)
-    print("This is social3\n")
-    time.sleep(1)
-    print("You see a distracted and nervous adventurer in the center of the rooom.\n")
+    print("What will you do?\n")
     print("1. Approach")
     print("2. Ignore\n")
     choice = input("> ")
+    print("")
     time.sleep(1)
-    while choice not in ["1", "2"]:
+    while choice not in ["1", "2", "stats"]:
         print("Invalid Choice.\n")
         print("1. Approach")
         print("2. Ignore\n")
@@ -169,10 +218,17 @@ def social3(player):
             print("You escape to the next room!\n")
         else:
             adventurer(player)
+    elif choice == "2":
+        time.sleep(1)
+        print("You sneak past the adventurer.")
     else:
         time.sleep(1)
-        print("You sneak past the adventurer.\n")
-
+        view_stats(player)
+        social3(player, True)
+    if started == True:
+        return
+    time.sleep(1)
+    print("")
     next_room(player)
 
 def payoffencounter(player, stat, name):
@@ -202,14 +258,15 @@ def adventurer(player):
     print("1. Threaten")
     print(f"2. Bribe [{payoff} Gold]\n")
     choice = input("> ")
+    print("")
     time.sleep(1)
     if choice == "1":
-        print("\nYou Threatened.\n")
+        print("You Threatened.\n")
         time.sleep(1)
         print(f"You recieved the {items_list[3]}!")
         player.items.append(items_list[3])
     elif choice == "2":
-        print("\nYou attempt to bribe.\n")
+        print("You attempt to bribe.\n")
         if player.gold < payoff:
             time.sleep(1)
             print("But you didn't have enough!")
@@ -220,7 +277,7 @@ def adventurer(player):
             time.sleep(1)
             print(f"You gave {payoff} Gold.")
             time.sleep(1)
-            print(f"You recieved the {items_list[4]}!\n")
+            print(f"You recieved the {items_list[4]}!")
             player.items.append(items_list[4])
     elif choice == "stats":
         view_stats(player)
@@ -235,13 +292,14 @@ def spikes(player):
     print("1. Take Elixir")
     print(f"2. Toss Gold [{payoff} Gold]\n")
     choice = input("> ")
+    print("")
     time.sleep(1)
     if choice == "1":
-        print("\nYou scooped the elixir into a nearby bottle.\n")
+        print("You scooped the elixir into a nearby bottle.\n")
         print(f"You recieved the {items_list[5]}!")
         player.items.append(items_list[5])
     elif choice == "2":
-        print("\nYou reach into you gold pouch.\n")
+        print("You reach into you gold pouch.\n")
         if player.gold < payoff:
             time.sleep(1)
             print("But you didn't have enough!")
@@ -251,8 +309,10 @@ def spikes(player):
         else:
             time.sleep(1)
             print(f"You tossed in {payoff} Gold.")
+            time.sleep(1)
             print("The pool shimmers and the gold disolves.")
-            print(f"You recieved the {items_list[6]}!\n")
+            time.sleep(1)
+            print(f"You recieved the {items_list[6]}!")
             player.items.append(items_list[6])
     elif choice == "stats":
         view_stats(player)
@@ -273,6 +333,7 @@ def loot1(player):
     player.gold += reward
     time.sleep(1)
     print("There is nothing else of interest in the room.\n")
+    time.sleep(1)
     next_room(player)
 
 # Defense Boost + Magic Sheild
@@ -287,10 +348,14 @@ def loot2(player):
     time.sleep(1)
     if player.arcaneknowledge:
         print("Arance Knowledge Trigger Placeholder.")
+        time.sleep(1)
         print(f"You recieved the {items_list[2]}!")
+        time.sleep(1)
         print(f"The {items_list[2]} allows you to negate all damage once.")
         player.items.append(items_list[2])
+        time.sleep(1)
     print("There is nothing else of interest in the room.\n")
+    time.sleep(1)
     next_room(player)
 
 # Attack Boost + Barbed Arrow
@@ -309,7 +374,7 @@ def loot3(player):
         print(f"You recieved the {items_list[0]}!")
         time.sleep(1)
         # Currently damage is increased flatly. Change to damage ignores defense?
-        print(f"The {items_list[0]} allows you to [PLACEHOLDER].")
+        print(f"The {items_list[0]} allows you to ignore all defenses once.")
         player.items.append(items_list[0])
     time.sleep(1)
     print("There is nothing else of interest in the room.\n")

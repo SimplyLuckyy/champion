@@ -35,6 +35,6 @@ class Boss(Enemy):
     def __init__(self):
         super().__init__()
         self.name = "temp"
-        self.health = 200
-        self.attack = 20
-        self.defense = 20
+        self.health = 100
+        self.attack = 10
+        self.defense = 5

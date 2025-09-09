@@ -3,7 +3,7 @@ class Player:
         self.name = None
         self.health = 100
         self.energy = 100
-        self.gold = 20
+        self.gold = 0
         self.potions = 0
         self.attack = 5
         self.defense = 0
