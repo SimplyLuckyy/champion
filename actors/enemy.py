@@ -10,16 +10,16 @@ class Skeleton(Enemy):
     def __init__(self):
         super().__init__()
         self.name = "Skeleton"
-        self.health = 40
+        self.health = 30
         self.attack = 10
-        self.defense = 5
+        self.defense = 3
 
 class Spider(Enemy):
     def __init__(self):
         super().__init__()
         self.name = "Giant Spider"
-        self.health = 50
-        self.attack = 5
+        self.health = 60
+        self.attack = 8
         self.defense = 3
 
 # Change to something else. Something Armored or Flying (Rogues keen eye allows them to see weak points)
@@ -28,13 +28,13 @@ class Bat(Enemy):
         super().__init__()
         self.name = "Giant Bat"
         self.health = 40
-        self.attack = 3
-        self.defense = 8
+        self.attack = 5
+        self.defense = 10
 
 class Boss(Enemy):
     def __init__(self):
         super().__init__()
         self.name = "temp"
         self.health = 100
-        self.attack = 10
-        self.defense = 5
+        self.attack = 12
+        self.defense = 15

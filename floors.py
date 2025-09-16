@@ -36,7 +36,7 @@ def combat3(player):
     print(f"A {enemy.name} has appeared!\n")
     if player.keeneye:
         print(f"Your Keen Eye alerts you to its weak points.\n{enemy.name}'s defenses reduced!\n")
-        enemy.defense -= 3
+        enemy.defense -= 5
     battle(player, enemy)
     if enemy.health <= 0:
         print(f"{enemy.name} Defeated!\n")
@@ -150,20 +150,7 @@ def social2(player, started=False):
         print("Spikes placeholder\n")
 
     time.sleep(1)
-    print("What will you do?\n")
-    print("1. Attempt to cross")
-    print("2. Ignore\n")
-    choice = input("> ")
-    print("")
-    time.sleep(1)
-    while choice not in ["1", "2", "stats"]:
-        print("Invalid Choice.\n")
-        time.sleep(1)
-        print("What will you do?\n")
-        print(f"1. Attempt to cross")
-        print("2. Ignore\n")
-        choice = input("> ")
-        print("")
+    choice = spikeschoice(player)
     temp = player.energy
     if choice == "1":
         if not player.arcaneknowledge:
@@ -320,6 +307,26 @@ def spikes(player):
     else:
         print("Invalid Choice\n")
         spikes(player)
+
+def spikeschoice(player):
+    print("What will you do?\n")
+    if player.arcaneknowledge:
+        print("1. Attempt to cross [Arcane Knowledge]")
+    else:
+        print(f"1. Attempt to cross [{stat_cost} Stamina]")
+    print("2. Ignore\n")
+    choice = input("> ")
+    print("")
+    time.sleep(1)
+    if choice == "1":
+        return "1"
+    elif choice == "2":
+        return "2"
+    elif choice == "stats":
+        view_stats(player)
+        return spikeschoice(player)
+    else:
+        return spikeschoice(player)
 
 # Gold
 def loot1(player):

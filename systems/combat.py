@@ -57,9 +57,11 @@ def playerturn(player, enemy):
     can_use_item1_1 = False
     can_use_item1_2 = False
     energy_cost = 10
+    ismage = False
 
     if player.energyname == "Mana":
         energy_cost = 5
+        ismage = True
 
     if player.potions > 0:
         print("3. Use Potion")
@@ -88,14 +90,33 @@ def playerturn(player, enemy):
 
     choice = input("> ").lower()
     print("")
-    if choice == "1":
+    if not ismage and choice == "1":
         dodamage(player, enemy, "regular")
-    elif choice == "2" and player.energy >= energy_cost:
+    elif not ismage and choice == "2" and player.energy >= energy_cost:
         dodamage(player, enemy, "strong")
-    elif choice == "2" and player.energy < energy_cost:
+    elif not ismage and choice == "2" and player.energy < energy_cost:
         time.sleep(1)
         print("But you didn't have enough energy!")
         dodamage(player, enemy, "regular")
+
+    # Mage Attacks
+    if ismage and choice == "1" and player.energy >= energy_cost:
+        print("Doing Regular Damage")
+        dodamage(player, enemy, "regular")
+    elif ismage and choice == "2" and player.energy >= (energy_cost + 10):
+        print("Doing Strong Damage")
+        dodamage(player, enemy, "strong")
+    elif ismage and choice == "2" and player.energy < (energy_cost + 10):
+        time.sleep(1)
+        print("But you didn't have enough energy!")
+        if player.energy >= energy_cost:
+            dodamage(player, enemy, "regular")
+        else:
+             dodamage(player, enemy, "weak")
+    elif ismage and choice == "1" and player.energy < energy_cost:
+        time.sleep(1)
+        print("But you didn't have enough energy!")
+        dodamage(player, enemy, "weak")
 
     # Optional Additions
     elif choice == "3" and can_use_potion:
@@ -134,6 +155,8 @@ def dodamage(attacker, defender, attack_type="regular"):
         damage_delt = (attacker.attack * 2) - defender.defense
         if isinstance(attacker, Player) and attacker.energyname == "Mana":
             attacker.energy -= 5
+    elif attack_type == "weak":
+        damage_delt = 10 + attacker.attack - 15
     elif attack_type == flatdamageregular:
         damage_delt = flatdamageregular
     elif attack_type == flatdamagestrong:

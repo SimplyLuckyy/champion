@@ -5,8 +5,8 @@ class Player:
         self.energy = 100
         self.gold = 0
         self.potions = 0
-        self.attack = 5
-        self.defense = 0
+        self.attack = 10
+        self.defense = 2
         self.energyname = "Stamina"
         self.weaponname = "Stick"
         self.keeneye = False
@@ -18,24 +18,27 @@ class Warrior(Player):
     def __init__(self):
         super().__init__()
         self.name = "Warrior"
+        self.health = 150
         self.weaponname = "Sword"
-        self.attack = 10
+        self.attack = 15
         self.defense = 5
 
 class Rogue(Player):
     def __init__(self):
         super().__init__()
         self.name = "Rogue"
+        self.energy = 150
         self.weaponname = "Bow"
-        self.defense = 5
+        self.defense = 8
         self.keeneye = True
 
 class Mage(Player):
     def __init__(self):
         super().__init__()
         self.name = "Mage"
+        self.energy = 150
         self.weaponname = "Staff"
-        self.attack = 10
+        self.attack = 15
         self.energyname = "Mana"
         self.arcaneknowledge = True
     
