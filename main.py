@@ -18,15 +18,16 @@ def main():
         introduction()
         time.sleep(1)
         player = choose_champion(None)
-
+        tutorial(player)
         if floor_count == 1:
-            first_floor_intro()
+            first_floor_intro(player)
         else:
             print("You descend to the next floor...\n")
         room_gen(floor_count, room_list, player)
         time.sleep(1)
-        print(boarder)
         playagain()
+
+
 
 def playagain():
     

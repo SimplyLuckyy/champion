@@ -4,12 +4,13 @@ from text import *
 def choose_champion(champion):
 
     player_temp = champion
-
-    print("""Who is your champion?\n
+    time.sleep(1)
+    print("""Who is your Champion.?\n
 1. Warrior
 2. Rogue
 3. Mage\n""")
     champion_class = input("> ")
+    print("")
     match champion_class:
         case "1":
             warrior_description()
@@ -36,7 +37,7 @@ def choose_champion(champion):
     choice = input("> ").lower()
     print("")
     if choice == "y":
-        print(f"You are the {player_temp.name}. At any time you may type 'stats' to view your stats.\n")
+        print(f"You are the {player_temp.name}.\n")
         return player_temp
     elif choice == "n":
         return choose_champion(player_temp)

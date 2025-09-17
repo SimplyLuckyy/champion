@@ -24,13 +24,15 @@ def battle(player, enemy):
     while True:
         dodamage(enemy, player, "regular")
         time.sleep(1)
-        print(f"player health: {player.health}\n")
+        print(f"Player Health: {player.health}")
+        print(f"{enemy.name} Health: {enemy.health}\n")
         if player.health <= 0:
             break
         time.sleep(1)
         playerturn(player, enemy)
         time.sleep(1)
-        print(f"enemy health: {enemy.health}\n")
+        print(f"Player Health: {player.health}")
+        print(f"{enemy.name} Health: {enemy.health}\n")
         if enemy.health <= 0:
             break
     healthcheck(player, enemy)
@@ -43,7 +45,7 @@ def healthcheck(player, enemy):
             playerturn(player, enemy)
             battle(player, enemy)
         else:
-            print("Your champion has fallen\n")
+            print("Your Champion has fallen\n")
             print(boarder + "\nGAME OVER\n" + boarder)
             exit()
 
@@ -90,17 +92,18 @@ def playerturn(player, enemy):
 
     choice = input("> ").lower()
     print("")
-    if not ismage and choice == "1":
+    if ismage == False and choice == "1":
         dodamage(player, enemy, "regular")
-    elif not ismage and choice == "2" and player.energy >= energy_cost:
+    elif ismage == False and choice == "2" and player.energy >= energy_cost:
         dodamage(player, enemy, "strong")
-    elif not ismage and choice == "2" and player.energy < energy_cost:
+    elif ismage == False and choice == "2" and player.energy < energy_cost:
         time.sleep(1)
         print("But you didn't have enough energy!")
         dodamage(player, enemy, "regular")
 
     # Mage Attacks
-    if ismage and choice == "1" and player.energy >= energy_cost:
+
+    elif ismage and choice == "1" and player.energy >= energy_cost:
         print("Doing Regular Damage")
         dodamage(player, enemy, "regular")
     elif ismage and choice == "2" and player.energy >= (energy_cost + 10):
@@ -136,13 +139,12 @@ def playerturn(player, enemy):
     elif choice == "4" and can_use_item1_2 and player.potions != 0:
         dodamage(player, enemy, flatdamagestrong)
         player.items.remove(items_list[4])
-    
 
     elif choice == "stats":
         view_stats(player)
         return playerturn(player, enemy)
     else:
-        print("Invaild Choice\n")
+        print("Invalid Choice\n")
         return playerturn(player, enemy)
 
 def dodamage(attacker, defender, attack_type="regular"):
@@ -200,7 +202,7 @@ def magicshield(player):
         print("Damge not negated\n")
         return False
     else:
-        print("Invaild Choice\n")
+        print("Invalid Choice\n")
         return magicshield(player)
 
 # Change to negating defense
@@ -227,7 +229,7 @@ def combatitem(player, damage_delt, attack_type):
             print("The arrow was not used.\n")
             return False, damage_delt
         else:
-            print("Invaild Choice\n")
+            print("Invalid Choice\n")
             return combatitem(player, damage_delt, attack_type)
     if "Spellbook" in player.items:
         print("Would you like to use Spellbook? [y/n]\n")
@@ -253,6 +255,7 @@ def useelixir(player, damage_delt):
     if items_list[5] in player.items:
         print(f"Would you like to reduce damage by {flatreductionregular}? [y/n]\n")
         choice = input("> ").lower()
+        print("")
         if choice == "y":
             time.sleep(1)
             print(f"Damage Reduced by {flatreductionregular}!\n")
@@ -266,7 +269,7 @@ def useelixir(player, damage_delt):
             print("Damge not reduced\n")
             return damage_delt
         else:
-            print("Invaild Choice\n")
+            print("Invalid Choice\n")
             return useelixir(player, damage_delt)
             
     elif items_list[6] in player.items:
@@ -285,7 +288,7 @@ def useelixir(player, damage_delt):
             print("Damge not reduced\n")
             return damage_delt
         else:
-            print("Invaild Choice\n")
+            print("Invalid Choice\n")
             return useelixir(player, damage_delt)
 
 def usepotion(player):

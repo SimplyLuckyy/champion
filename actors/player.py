@@ -3,7 +3,7 @@ class Player:
         self.name = None
         self.health = 100
         self.energy = 100
-        self.gold = 0
+        self.gold = 10
         self.potions = 0
         self.attack = 10
         self.defense = 2
@@ -46,8 +46,12 @@ class Debug(Player):
     def __init__(self):
         super().__init__()
         self.name = "Developer"
-        self.attack = 30
-        self.defense = 30
+        self.health = 300
+        self.energy = 300
+        self.gold = 30
+        self.potions = 10
+        self.attack = 40
+        self.defense = 40
         self.keeneye = True
         self.arcaneknowledge = True
 
