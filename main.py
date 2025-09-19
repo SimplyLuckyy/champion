@@ -16,7 +16,6 @@ def main():
                     loot1, loot2, loot3]
         
         introduction()
-        time.sleep(1)
         player = choose_champion(None)
         tutorial(player)
         if floor_count == 1:

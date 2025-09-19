@@ -4,6 +4,8 @@ from actors.player import *
 
 boarder = "=" * 20
 
+# Need to write Social Floors
+
 def warrior_description():
     time.sleep(1)
     print(boarder)
@@ -188,6 +190,69 @@ def first_floor_intro(player):
     print("You descend to the first floor...")
 
 def ending(player):
+    lines = ["The beast collapses back into a heap of bones, whatever possesed it expelled by your fatal strike.",
+    "It will rise again for the next aspiring champion, but until then it will lie lifeless and dormant.\n",
+    "The grand chest opens revealing the proof of your achievement: Mountains of gold and equipment burning with arcane energy.",
+    "A light shimmers from the center of the room calling to you.",
+    "Before you depart you reach into the pile of bones and claim a gilded spine as your trophy.",
+    "Stepping into the light it blinds you.",
+    "Once your eyes open again you stand before the grand door into the dungeon.\n",
+    "Returning to civilization you are welcomed with open arms as one of the few elite to accomplish such a challenge.",
+    "Your exploits are proclaimed across the nation, known to all as a Champion.\n",
+    boarder]
+
+    for line in lines:
+        time.sleep(1)
+        print(line)
     time.sleep(1)
-    print("Placeholder for ending")
-    print(boarder)
+
+def socialmerchanttext():
+    lines = ["A ghostly figure stands in the center of the room.",
+    "When you approach an otherworldly echo emanates from their unmoving mouth.",
+    '"I see yet another chooses to brave this crypt..."',
+    '"I was once like you, so young and full naive courage."',
+    '"Now I find my soul bound to this very room. The occasional adventurous fool my only company."',
+    '"I wish to aide you on your quest, lest you end up like me."',
+    'They gesture to their side, "I have a wide stock of potions you may use to replenish your strength."',
+    '"All ask for in return is gold."',
+    '"..."',
+    '"...We all have to make a living somehow."\n']
+
+    for line in lines:
+        time.sleep(1)
+        print(line)
+
+def socialmerchantmage():
+    lines = ["[Arcane Knowledge] You sense powerful necrotic magic emitted by the merchant.",
+    "That must be what allowed their soul to persist past death.\n",
+    'Their form flickers with recognition, "Wait."',
+    '"Before you go, I have another offer to provide."',
+    '"It has been so very long since I have encountered a fellow Mage."',
+    '"I may have something of interest to you... While old, I promise it is worth the price."\n']
+
+    for line in lines:
+        time.sleep(1)
+        print(line)
+
+def socialadventurertext():
+    lines = []
+
+    for line in lines:
+        time.sleep(1)
+        print(line)
+
+def socialspikestext():
+    lines = []
+
+    for line in lines:
+        time.sleep(1)
+        print(line)
+
+def resttext(player, restore_health, restore_energy):
+    lines = ["You find the next floor surprisingly empty.",
+    "It appears safe, and you take the rare oppurtunity to rest.\n",
+    f"You replenished {restore_health} Health and {restore_energy} {player.energyname}!\n"]
+
+    for line in lines:
+        time.sleep(1)
+        print(line)

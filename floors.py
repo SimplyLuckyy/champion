@@ -1,7 +1,7 @@
 import time
 from actors.enemy import *
 from systems.combat import battle, next_room, items_list, playerturn
-from text import view_stats
+from text import view_stats, resttext, socialmerchanttext, socialadventurertext, socialspikestext, socialmerchantmage
 
 
 global potion_cost, spellbook_cost, payoff, stat_cost, attack_increase, defense_increase
@@ -46,14 +46,12 @@ def combat3(player):
 def social1(player):
 
     time.sleep(1)
-    print("This is social1\n")
-    time.sleep(1)
-    print("merchant placeholder\n")
+    socialmerchanttext()
     time.sleep(1)
     buyitems(player, potion_cost)
     time.sleep(1)
     if player.arcaneknowledge:
-        print("Player has Arcane Knowledge\n")
+        socialmerchantmage()
         time.sleep(1)
         buyitems(player, spellbook_cost)
     time.sleep(1)
@@ -104,7 +102,7 @@ def buyitems(player, cost):
                 print("")
                 if choice == "y":
                     time.sleep(1)
-                    print("Traded potions for gold.\n")
+                    print('"...Thank you for your donation"\n')
                     player.potions += potion_count
                     player.gold -= potion_count * potion_cost
                 elif choice == "n":
@@ -114,14 +112,14 @@ def buyitems(player, cost):
                     buyitems(player, cost_temp)
                 else:
                     time.sleep(1)
-                    print("invalid Choice\n")
+                    print("Invalid Choice\n")
                     time.sleep(1)
                     buyitems(player, cost_temp)
         if cost == spellbook_cost:
             time.sleep(1)
             print(f"You recieved the {items_list[1]}!")
             time.sleep(1)
-            print(f"The {items_list[1]} allows you to negate all damage once.")
+            print(f"The {items_list[1]} allows you to ignore all defenses once.\n")
             player.items.append(items_list[1])
             player.gold -= spellbook_cost
 
@@ -354,9 +352,11 @@ def loot2(player):
     player.defense += defense_increase
     time.sleep(1)
     if player.arcaneknowledge:
-        print("Arance Knowledge Trigger Placeholder.")
+        print("[Arance Knowledge] You sense arcane energy surrounding an inconspicuous ring.")
         time.sleep(1)
-        print(f"You recieved the {items_list[2]}!")
+        print("You magic attunes to the ring.")
+        time.sleep(1)
+        print(f"\nYou recieved the {items_list[2]}!\n")
         time.sleep(1)
         print(f"The {items_list[2]} allows you to negate all damage once.")
         player.items.append(items_list[2])
@@ -376,9 +376,11 @@ def loot3(player):
     player.attack += attack_increase
     time.sleep(1)
     if player.keeneye:
-        print("Keen Eye Trigger Placeholder.")
+        print("[Keen Eye] You notice a barbed arrow head buried under cobwebs.")
         time.sleep(1)
-        print(f"You recieved the {items_list[0]}!")
+        print("You fasten the head to one of your arrows.")
+        time.sleep(1)
+        print(f"\nYou recieved the {items_list[0]}!\n")
         time.sleep(1)
         # Currently damage is increased flatly. Change to damage ignores defense?
         print(f"The {items_list[0]} allows you to ignore all defenses once.")
@@ -390,12 +392,19 @@ def loot3(player):
 
 # Restore 50% of lost health & energy
 def rest_room(player):
-    time.sleep(1)
-    print("This is rest")
-    restore_health = ((100 - player.health) // 2) + 1
-    restore_energy = ((100 - player.energy) // 2) + 1
-    player.health += restore_health
-    player.energy += restore_energy
+
+    restore_health = 0
+    restore_energy = 0
+
+    if player.health < player.healthmax:
+        restore_health = ((player.healthmax - player.health) // 2) + 1
+        player.health += restore_health
+    
+    if player.energy < player.energymax:
+        restore_energy = ((player.energymax - player.energy) // 2) + 1
+        player.energy += restore_energy
+
+    resttext(player, restore_health, restore_energy)
     next_room(player)
 
 
@@ -407,6 +416,9 @@ def boss_room(player):
     if player.arcaneknowledge:
         print("Arcane Knowledge Trigger Placeholder\n")
         playerturn(player, enemy)
+        if enemy.health <= 0:
+            print(f"{enemy.name} Defeated!\n")
+            return
     battle(player, enemy)
     if enemy.health <= 0:
         print(f"{enemy.name} Defeated!\n")
