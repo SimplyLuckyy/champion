@@ -15,18 +15,21 @@ Recommended to be set to a multiple of 5.
 
 ## Getting Started
 
-# Prerequisites
+### Prerequisites
 
 To run this project you will require:
 * Python3
 
-# Setup
+### Setup
 
 1. Clone the repository:
+
 `git clone https://github.com/simplyluckyy/champion.git`
 
 2. Move to the project directory:
+
 `cd champion`
 
 3. Run Main.py
+
 `python3 main.py`
