@@ -34,7 +34,7 @@ class Bat(Enemy):
 class Boss(Enemy):
     def __init__(self):
         super().__init__()
-        self.name = "temp"
+        self.name = "The Beast"
         self.health = 100
         self.attack = 12
         self.defense = 15

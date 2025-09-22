@@ -6,7 +6,11 @@ from systems.roomgen import *
 from systems.choosechampion import *
 from systems.combat import *
 
-# reminder to put "> " at the start of all player inputs for clarity
+# If you want to traverse more floors in a playthrough, increase the total_floors integer.
+# Recommended to be a multiple of 5
+global total_floors
+total_floors = 5
+
 
 def main():
     
@@ -22,7 +26,7 @@ def main():
             first_floor_intro(player)
         else:
             print("You descend to the next floor...\n")
-        room_gen(floor_count, room_list, player)
+        room_gen(floor_count, room_list, total_floors, player)
         time.sleep(1)
         playagain()
 

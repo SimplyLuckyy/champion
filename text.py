@@ -46,7 +46,7 @@ def mage_description():
 def debug_description():
     time.sleep(1)
     print(boarder)
-    lines = ["You are the Developer.\n", "This is a debug class intended for testing.", 
+    lines = ["You are the Developer.\n", "This is a debug class intended for testing. It was kept in as an easter egg.", 
     "Your Attack, Defense, Health, Stamina, Gold, and starting Potions are far beyound what is necessary, making your quest trivial.\n",
     "All extra interactions will be unlocked to you."]
     for line in lines:
@@ -136,9 +136,9 @@ def tutorialdescription(player):
     f"You start with {player.potions} Potions. More may be found during your quest.",
     f"Potions regain 25 points of Health and {player.energyname}.",
     "They are used automatically after attacks that would be fatal.",
-    "Otherwise you must use turn to consume a potion during battle.\n",
+    "Otherwise you must use a turn to consume a potion during battle.\n",
     "Rest Rooms are encounted every 5th room.",
-    "The allow you to recover half of your currently missing health."]
+    "They allow you to recover half of your currently missing health."]
     attacksmage = ["As a Mage, your energy is Mana.", 
     "Both your regular and strong attacks will cost Mana (5 and 15 respectively)",
     "If your Mana is deplated you will instead attack with your staff, dealing very minor damage."]
@@ -169,7 +169,7 @@ def first_floor_intro(player):
     lines = ["You stand before the grand doors leading into the dungeon.",
     "The hinges are rusted, creaking as you push past the bulk.",
     "Steeping past the entryway, the doors seal behind you trapping you inside.",
-    "The stale air smells of rot and smoke. The only way out is down.\n",]
+    "The stale air smells of rot and smoke. The only way through is down.\n",]
     
     for line in lines:
         time.sleep(1)
@@ -238,13 +238,6 @@ def socialmerchantmage():
 def socialadventurertext(player):
     lines = ["The young adventurer startles at the sound of your footsteps, hand flying to the hilt of their sword.",
     "They don't seem to relax even after realizing you aren't a monster, eyes jumping at the slightest movement.\n",]
-
-    for line in lines:
-        time.sleep(1)
-        print(line)
-
-def socialspikestext():
-    lines = []
 
     for line in lines:
         time.sleep(1)

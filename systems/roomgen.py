@@ -3,8 +3,10 @@ from floors import *
 import time
 import random
 
-def room_gen(floor_count, room_list, player):
-    boss_floor = 10 + 1
+
+
+def room_gen(floor_count, room_list, total_floors, player):
+    boss_floor = total_floors + 1
     limit_list = [social1, social2, social3]
 
     if floor_count == boss_floor:

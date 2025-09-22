@@ -37,7 +37,6 @@ def choose_champion(champion):
     choice = input("> ").lower()
     print("")
     if choice == "y":
-        print(f"You are the {player_temp.name}.\n")
         return player_temp
     elif choice == "n":
         return choose_champion(player_temp)

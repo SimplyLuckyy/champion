@@ -45,7 +45,7 @@ def healthcheck(player, enemy):
             playerturn(player, enemy)
             battle(player, enemy)
         else:
-            print("Your Champion has fallen\n")
+            print("Your Champion has fallen.\n")
             print(boarder + "\nGAME OVER\n" + boarder)
             exit()
 
@@ -56,7 +56,9 @@ def playerturn(player, enemy):
     print("2. Strong Attack")
 
     can_use_potion = False
+    # bomb normal
     can_use_item1_1 = False
+    # bomb Potent
     can_use_item1_2 = False
     energy_cost = 10
     ismage = False
@@ -164,7 +166,7 @@ def dodamage(attacker, defender, attack_type="regular"):
     elif attack_type == flatdamagestrong:
         damage_delt = flatdamagestrong
     time.sleep(1)
-    print(f"{attacker.name} deals {damage_delt} damage")
+    print(f"{attacker.name} deals {damage_delt} damage\n")
     if damage_delt <= 0:
         return
 

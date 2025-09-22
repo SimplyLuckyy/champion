@@ -53,7 +53,7 @@ class Debug(Player):
         self.name = "Developer"
         self.healthmax = 300
         self.energymax = 300
-        self.health = 200
+        self.health = 300
         self.energy = 300
         self.gold = 30
         self.potions = 10
