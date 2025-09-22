@@ -4,9 +4,8 @@ import time
 import random
 
 def room_gen(floor_count, room_list, player):
-    boss_floor = 5 + 1
-    limit_list = [social1, social2, social3, 
-                loot1, loot2, loot3]
+    boss_floor = 10 + 1
+    limit_list = [social1, social2, social3]
 
     if floor_count == boss_floor:
         print(f"{boarder}\n")

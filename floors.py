@@ -1,7 +1,7 @@
 import time
 from actors.enemy import *
 from systems.combat import battle, next_room, items_list, playerturn
-from text import view_stats, resttext, socialmerchanttext, socialadventurertext, socialspikestext, socialmerchantmage
+from text import view_stats, resttext, socialmerchanttext, socialadventurertext, socialspikestext, socialmerchantmage, socialadventurertext, socialspikestext
 
 
 global potion_cost, spellbook_cost, payoff, stat_cost, attack_increase, defense_increase
@@ -35,7 +35,7 @@ def combat3(player):
     time.sleep(1)
     print(f"A {enemy.name} has appeared!\n")
     if player.keeneye:
-        print(f"Your Keen Eye alerts you to its weak points.\n{enemy.name}'s defenses reduced!\n")
+        print(f"[Keen Eye] You are alerted to its weak points.\n{enemy.name}'s defenses reduced!\n")
         enemy.defense -= 5
     battle(player, enemy)
     if enemy.health <= 0:
@@ -143,29 +143,50 @@ def buyitems(player, cost):
 def social2(player, started=False):
     if started == False:
         time.sleep(1)
-        print("This is social2")
+        print("In the room resides a pit of spikes.")
         time.sleep(1)
-        print("Spikes placeholder\n")
-
+        print("On the opposite wall sits a shimmering foutain.")
+        time.sleep(1)
+        print("There are platforms above the spikes providing a path.")
+        time.sleep(1)
+        print("However, they seem to be moving in unpredictable patterns along invisable rails.\n")
+    if player.arcaneknowledge:
+        time.sleep(1)
+        print("[Arcane Knowledge] You sense the magic pulling at the platforms, allowing you to predict their movement.\n")
     time.sleep(1)
     choice = spikeschoice(player)
     temp = player.energy
     if choice == "1":
         if not player.arcaneknowledge:
+            time.sleep(1)
+            print("You attempt to cross the pit...")
+            time.sleep(1)
+            if player.energy >= stat_cost:
+                print("And you succeeded!\n")
             payoffencounter(player, player.energy, player.energyname)
         else:
-            print("Arcane Knowledge Trigger placeholder\n")
+            time.sleep(1)
+            print("You carefully follow the pattern of the platforms to make your way across.\n")
         if not player.arcaneknowledge and temp < stat_cost:
             print("You left to the next room.")
         else:
+            time.sleep(1)
+            print("Now on the otherside you have a clearer look at the shimmering foutain.")
+            time.sleep(1)
+            print("From it springs a fortifying elixir.")
+            time.sleep(1)
+            print("Words glimmer above the foutain etched into the stone wall.\n")
+            time.sleep(1)
+            print('"Pay your respects to us, O adventurer, and see your boon strengthened"')
             spikes(player)
     elif choice == "2":
         time.sleep(1)
-        print("You ignore the spike trap.")
+        print("You ignore the spike pit.")
     else:
         time.sleep(1)
         view_stats(player)
         social2(player, True)
+
     if started == True:
         return
     time.sleep(1)
@@ -176,8 +197,6 @@ def social2(player, started=False):
 # Add option to ignore encounter
 def social3(player, started=False):
     if started == False:
-        time.sleep(1)
-        print("This is social3\n")
         time.sleep(1)
         print("You see a distracted and nervous adventurer in the center of the rooom.\n")
     time.sleep(1)
@@ -192,13 +211,20 @@ def social3(player, started=False):
         print("1. Approach")
         print("2. Ignore\n")
         choice = input("> ")
+        print("")
     
     if choice == "1":
         temp = player.health
+        time.sleep(1)
+        print("You Approach the nervous adventurer.\n")
+        socialadventurertext()
+        time.sleep(1)
         if not player.keeneye:
+            print("Without warning, they draw their sword and strike you!\n")
+            time.sleep(1)
             payoffencounter(player, player.health, "health")
         else:
-            print("Keen Eye Trigger Placeholder\n")
+            print("[Keen Eye] You notice them grip on their sword's hilt tighter. They seem hesitant.\n")
         if temp == 1 and not player.keeneye:
             print("You escape to the next room!\n")
         else:
@@ -210,6 +236,7 @@ def social3(player, started=False):
         time.sleep(1)
         view_stats(player)
         social3(player, True)
+
     if started == True:
         return
     time.sleep(1)
@@ -246,7 +273,15 @@ def adventurer(player):
     print("")
     time.sleep(1)
     if choice == "1":
-        print("You Threatened.\n")
+        print(f"You draw your {player.weaponname} in warning.\n")
+        time.sleep(1)
+        print('"I-I\'m sorry!"')
+        time.sleep(1)
+        print('"I hardly know what I\'m doing here."')
+        time.sleep(1)
+        print('"I heard there was gold to be made here, but I don\'t think I\'m cut out for this."')
+        time.sleep(1)
+        print('"Take this as my apology. Not Like I need it anymore..."\n')
         time.sleep(1)
         print(f"You recieved the {items_list[3]}!")
         player.items.append(items_list[3])
@@ -254,13 +289,29 @@ def adventurer(player):
         print("You attempt to bribe.\n")
         if player.gold < payoff:
             time.sleep(1)
-            print("But you didn't have enough!")
+            print("But you didn't have enough!\n")
+            time.sleep(1)
+            print('"You\'re giving me gold? After I attacked you?')
+            time.sleep(1)
+            print('"It\'s not much... but I appreicate the gesture."')
+            time.sleep(1)
+            print('"I heard there was gold to be made here, but I don\'t think I\'m cut out for this."')
+            time.sleep(1)
+            print('"Take this as my apology. Not Like I need it anymore..."\n')
             time.sleep(1)
             print(f"You recieved the {items_list[3]}!")
             player.items.append(items_list[3])
         else:
             time.sleep(1)
-            print(f"You gave {payoff} Gold.")
+            print(f"You offered {payoff} Gold.")
+            time.sleep(1)
+            print('"You\'re giving me gold? After I attacked you?')
+            time.sleep(1)
+            print('"I don\'t deserve this kindness... but thank you."')
+            time.sleep(1)
+            print('"I came here because I heard there was gold to be made, but if you\'re giving it away I have no reason to stay"')
+            time.sleep(1)
+            print('"Here take this as my apology. Not like I need it anymore."\n')
             time.sleep(1)
             print(f"You recieved the {items_list[4]}!")
             player.items.append(items_list[4])
@@ -280,7 +331,7 @@ def spikes(player):
     print("")
     time.sleep(1)
     if choice == "1":
-        print("You scooped the elixir into a nearby bottle.\n")
+        print("You scooped the elixir into an empty bottle.\n")
         print(f"You recieved the {items_list[5]}!")
         player.items.append(items_list[5])
     elif choice == "2":
@@ -309,7 +360,7 @@ def spikes(player):
 def spikeschoice(player):
     print("What will you do?\n")
     if player.arcaneknowledge:
-        print("1. Attempt to cross [Arcane Knowledge]")
+        print("1. Attempt to cross")
     else:
         print(f"1. Attempt to cross [{stat_cost} Stamina]")
     print("2. Ignore\n")
@@ -332,7 +383,7 @@ def loot1(player):
     time.sleep(1)
     print("In the room stands a lone chest.")
     time.sleep(1)
-    print("The lock is worn and corroded, easily falling from the it's hook.")
+    print("The lock is worn and corroded, easily falling from the its hook.")
     time.sleep(1)
     print(f"Inside the chest is gold! [Recieved {reward} Gold]")
     player.gold += reward
@@ -346,12 +397,12 @@ def loot2(player):
     time.sleep(1)
     print("In the room stands a lone chest.")
     time.sleep(1)
-    print("The lock is worn and corroded, easily falling from the it's hook.")
+    print("The lock is worn and corroded, easily falling from the its hook.")
     time.sleep(1)
     print(f"Inside the chest is armor! [Defense Increased By {defense_increase} points]")
     player.defense += defense_increase
     time.sleep(1)
-    if player.arcaneknowledge:
+    if player.arcaneknowledge and items_list[2] not in player.items:
         print("[Arance Knowledge] You sense arcane energy surrounding an inconspicuous ring.")
         time.sleep(1)
         print("You magic attunes to the ring.")
@@ -370,19 +421,19 @@ def loot3(player):
     time.sleep(1)
     print("In the room stands a lone chest.")
     time.sleep(1)
-    print("The lock is worn and corroded, easily falling from the it's hook.")
+    print("The lock is worn and corroded, easily falling from the its hook.")
     time.sleep(1)
     print(f"Inside the chest is a {player.weaponname}! [Attack Increased By {attack_increase} points]")
     player.attack += attack_increase
     time.sleep(1)
-    if player.keeneye:
+    if player.keeneye and items_list[0] not in player.items:
         print("[Keen Eye] You notice a barbed arrow head buried under cobwebs.")
         time.sleep(1)
         print("You fasten the head to one of your arrows.")
         time.sleep(1)
         print(f"\nYou recieved the {items_list[0]}!\n")
         time.sleep(1)
-        # Currently damage is increased flatly. Change to damage ignores defense?
+        # Currently damage is increased flatly. Change to damage ignores defense? (Later edit: Changed)
         print(f"The {items_list[0]} allows you to ignore all defenses once.")
         player.items.append(items_list[0])
     time.sleep(1)
@@ -412,13 +463,35 @@ def rest_room(player):
 def boss_room(player):
     enemy = Boss()
     time.sleep(1)
-    print("This is boss\n")
+    print("The room seems strangely empty aside from a pile of bones and a gilded chest at the back wall.\n")
     if player.arcaneknowledge:
-        print("Arcane Knowledge Trigger Placeholder\n")
-        playerturn(player, enemy)
-        if enemy.health <= 0:
-            print(f"{enemy.name} Defeated!\n")
-            return
+        time.sleep(1)
+        print("[Arcane Knowledge] The bones call to you. From them you sense an acient curse.")
+        time.sleep(1)
+        print("This beast has risen many times to face against adventurers like you.")
+        time.sleep(1)
+        print("Now is your chance before it awakens to attempt to dispel the curse binding it to this crypt.")
+        time.sleep(1)
+        print("As you raise your staff the beast stirs, bones rising and piecing themselves together and eyes burning to life.")
+        time.sleep(1)
+        print("The beast stumbles as you finish your incantation. You feel its mortal presence weaken!\n")
+        time.sleep(1)
+        enemy.health -= 20
+        player.energy -= 10
+    else:
+        time.sleep(1)
+        print("You approach the chest. The lock is sturdy and will take great effort to break.")
+        time.sleep(1)
+        print("From behind you hearing sounds of creaking and burning.")
+        time.sleep(1)
+        print("Just in time you turn to see a great beast forming itself from the scattered bones. Its eyes burn with animalistic fury.\n")
+    time.sleep(1)
+    print("The beast roars, bearing rows upon rows of rotting teeth.")
+    time.sleep(1)
+    print("Its spines graze against the ceiling as it streches to full height.")
+    time.sleep(1)
+    print("Will hardly any time to defend yourself the beast launches foward to strike!\n")
+    time.sleep(1)
     battle(player, enemy)
     if enemy.health <= 0:
         print(f"{enemy.name} Defeated!\n")

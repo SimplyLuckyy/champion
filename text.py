@@ -21,7 +21,7 @@ def warrior_description():
 def rogue_description():
     time.sleep(1)
     print(boarder)
-    lines = ["You are the Rogue.\n", "Training to avoid and redirct otherwise fatal attacks has gifted you greater Defense, at the cost of Attack.",
+    lines = ["You are the Rogue.\n", "Training to avoid and redirct otherwise fatal attacks has gifted you greater Defense and Stamina, at the cost of Attack.",
     "Your honed senses give you greater awareness to your surrounds.\n",
     "Few extra interactions may be unlocked depending on the floors encountered due to your Keen Eye."]
     for line in lines:
@@ -34,7 +34,7 @@ def rogue_description():
 def mage_description():
     time.sleep(1)
     print(boarder)
-    lines = ["You are the Mage.\n", "Years studying the arcane has rewarded you with greater attack prowess, but your physical form remains defenseless.\n",
+    lines = ["You are the Mage.\n", "Years studying the arcane has rewarded you with greater Attack and Mana, but your physical form remains defenseless.\n",
     "Some extra interactions will be unlocked, due to your Arcane Knowledge\n"]
     for line in lines:
         time.sleep(1)
@@ -192,7 +192,8 @@ def first_floor_intro(player):
 def ending(player):
     lines = ["The beast collapses back into a heap of bones, whatever possesed it expelled by your fatal strike.",
     "It will rise again for the next aspiring champion, but until then it will lie lifeless and dormant.\n",
-    "The grand chest opens revealing the proof of your achievement: Mountains of gold and equipment burning with arcane energy.",
+    "The grand chest clicks open as if it sensed your triumph.",
+    "Inside lies the proof of your achievement: Mountains of gold and equipment burning with arcane energy."
     "A light shimmers from the center of the room calling to you.",
     "Before you depart you reach into the pile of bones and claim a gilded spine as your trophy.",
     "Stepping into the light it blinds you.",
@@ -234,8 +235,9 @@ def socialmerchantmage():
         time.sleep(1)
         print(line)
 
-def socialadventurertext():
-    lines = []
+def socialadventurertext(player):
+    lines = ["The young adventurer startles at the sound of your footsteps, hand flying to the hilt of their sword.",
+    "They don't seem to relax even after realizing you aren't a monster, eyes jumping at the slightest movement.\n",]
 
     for line in lines:
         time.sleep(1)

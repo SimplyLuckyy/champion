@@ -5,8 +5,8 @@ class Player:
         self.energymax = 100
         self.health = 100
         self.energy = 100
-        self.gold = 10
-        self.potions = 0
+        self.gold = 15
+        self.potions = 2
         self.attack = 10
         self.defense = 2
         self.energyname = "Stamina"
