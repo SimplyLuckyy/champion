@@ -6,7 +6,7 @@ A simple text-based roguelike.
 In *Champion* you will descend through 10 floors to eventually face the beast the lies at the bottom of the dungeon.
 
 You will encounter a random set of rooms each playthrough including combat, loot, and social encounters.
-At the start you will choose your class between Warrior, Rogue, and Mage, each with stats. The Rogue and Mage both have abilities that may effect gameplay depending on the rooms encountered in compensation for their lower stats.
+At the start you will choose your class between Warrior, Rogue, and Mage, each with varying stats. The Rogue and Mage both have abilities that may effect gameplay depending on the rooms encountered in compensation for their lower stats.
 
 ## Getting Started
 
