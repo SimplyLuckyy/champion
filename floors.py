@@ -293,7 +293,7 @@ def adventurer(player):
             time.sleep(1)
             print("But you didn't have enough!\n")
             time.sleep(1)
-            print('"You\'re giving me gold? After I attacked you?')
+            print('"You\'re giving me gold? After I attacked you?"')
             time.sleep(1)
             print('"It\'s not much... but I appreicate the gesture."')
             time.sleep(1)
@@ -309,7 +309,7 @@ def adventurer(player):
             time.sleep(1)
             print(f"You offered {payoff} Gold.")
             time.sleep(1)
-            print('"You\'re giving me gold? After I attacked you?')
+            print('"You\'re giving me gold? After I attacked you?"')
             time.sleep(1)
             print('"I don\'t deserve this kindness... but thank you."')
             time.sleep(1)
@@ -509,5 +509,5 @@ def boss_room(player):
     time.sleep(1)
     battle(player, enemy)
     if enemy.health <= 0:
-        print(f"{enemy.name} Defeated!\n")
+        print(f"{enemy.name} was Defeated!\n")
     

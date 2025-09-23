@@ -47,7 +47,7 @@ def debug_description():
     time.sleep(1)
     print(boarder)
     lines = ["You are the Developer.\n", "This is a debug class intended for testing. It was kept in as an easter egg.", 
-    "Your Attack, Defense, Health, Stamina, Gold, and starting Potions are far beyound what is necessary, making your quest trivial.\n",
+    "Your Attack, Defense, Health, Stamina, Gold, and starting Potions are far beyond what is necessary, making your quest trivial.\n",
     "All extra interactions will be unlocked to you."]
     for line in lines:
         time.sleep(1)
@@ -133,7 +133,7 @@ def tutorial(player):
 
 def tutorialdescription(player):
     lines = [f"{player.energyname} and Health can be replenished using potions or when encountering a Rest Room.\n",
-    f"You start with {player.potions} Potions. More may be found during your quest.",
+    f"You start with {player.potions} Potion. More may be found during your quest.",
     f"Potions regain 25 points of Health and {player.energyname}.",
     "They are used automatically after attacks that would be fatal.",
     "Otherwise you must use a turn to consume a potion during battle.\n",
@@ -168,7 +168,7 @@ def first_floor_intro(player):
     notbegun = True
     lines = ["You stand before the grand doors leading into the dungeon.",
     "The hinges are rusted, creaking as you push past the bulk.",
-    "Steeping past the entryway, the doors seal behind you trapping you inside.",
+    "Stepping past the entryway, the doors seal behind you.",
     "The stale air smells of rot and smoke. The only way through is down.\n",]
     
     for line in lines:
@@ -211,7 +211,7 @@ def socialmerchanttext():
     lines = ["A ghostly figure stands in the center of the room.",
     "When you approach an otherworldly echo emanates from their unmoving mouth.",
     '"I see yet another chooses to brave this crypt..."',
-    '"I was once like you, so young and full naive courage."',
+    '"I was once like you, so full of naive courage."',
     '"Now I find my soul bound to this very room. The occasional adventurous fool my only company."',
     '"I wish to aide you on your quest, lest you end up like me."',
     'They gesture to their side, "I have a wide stock of potions you may use to replenish your strength."',
@@ -235,7 +235,7 @@ def socialmerchantmage():
         time.sleep(1)
         print(line)
 
-def socialadventurertext(player):
+def socialadventurertext():
     lines = ["The young adventurer startles at the sound of your footsteps, hand flying to the hilt of their sword.",
     "They don't seem to relax even after realizing you aren't a monster, eyes jumping at the slightest movement.\n",]
 

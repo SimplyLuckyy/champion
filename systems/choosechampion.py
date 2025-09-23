@@ -5,7 +5,7 @@ def choose_champion(champion):
 
     player_temp = champion
     time.sleep(1)
-    print("""Who is your Champion.?\n
+    print("""Who is your Champion?\n
 1. Warrior
 2. Rogue
 3. Mage\n""")
@@ -33,7 +33,7 @@ def choose_champion(champion):
             time.sleep(1)
             return choose_champion(player_temp)
     
-    print("Confirm your champion? [y/n]\n")
+    print("Confirm your Champion? [y/n]\n")
     choice = input("> ").lower()
     print("")
     if choice == "y":

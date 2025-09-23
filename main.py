@@ -9,7 +9,7 @@ from systems.combat import *
 # If you want to traverse more floors in a playthrough, increase the total_floors integer.
 # Recommended to be a multiple of 5
 global total_floors
-total_floors = 5
+total_floors = 10
 
 
 def main():

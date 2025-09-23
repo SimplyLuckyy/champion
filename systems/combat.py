@@ -21,6 +21,8 @@ flatreductionregular = 10
 flatreductionstrong = 20
 
 def battle(player, enemy):
+    if enemy.health <= 0:
+        return
     while True:
         dodamage(enemy, player, "regular")
         time.sleep(1)
@@ -106,10 +108,8 @@ def playerturn(player, enemy):
     # Mage Attacks
 
     elif ismage and choice == "1" and player.energy >= energy_cost:
-        print("Doing Regular Damage")
         dodamage(player, enemy, "regular")
     elif ismage and choice == "2" and player.energy >= (energy_cost + 10):
-        print("Doing Strong Damage")
         dodamage(player, enemy, "strong")
     elif ismage and choice == "2" and player.energy < (energy_cost + 10):
         time.sleep(1)
@@ -180,7 +180,7 @@ def dodamage(attacker, defender, attack_type="regular"):
                 defender.health -= damage_delt
             return
     # Barbed Arrow & Spellbook    
-    if isinstance(attacker, Player) and (items_list[0] in attacker.items or items_list[1] in attacker.items):
+    if isinstance(attacker, Player) and (items_list[0] in attacker.items or items_list[1] in attacker.items) and (attack_type == "regular" or attack_type == "strong"):
         (using, damage_delt) = combatitem(attacker, damage_delt, attack_type)
         if using:
             defender.health -= damage_delt
@@ -191,11 +191,12 @@ def dodamage(attacker, defender, attack_type="regular"):
 def magicshield(player):
     print("Would you like to negate damage? [y/n]\n")
     choice = input("> ").lower()
+    print("")
     if choice == "y":
         time.sleep(1)
         print("Damage Negated!\n")
         player.items.remove("Magic Shield")
-        print("The Magic Shield shatters...")
+        print("The Magic Shield shatters...\n")
         return True
     elif choice == "stats":
         view_stats()
@@ -299,10 +300,10 @@ def usepotion(player):
     player.potions -= 1
     player.health += restore
     player.energy += restore
-    if player.health > 100:
-        player.health = 100
-    if player.energy > 100:
-        player.energy = 100
+    if player.health > player.healthmax:
+        player.health = player.healthmax
+    if player.energy > player.energymax:
+        player.energy = player.energymax
     time.sleep(1)
 
 

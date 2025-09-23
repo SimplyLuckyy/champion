@@ -7,7 +7,7 @@ import random
 
 def room_gen(floor_count, room_list, total_floors, player):
     boss_floor = total_floors + 1
-    limit_list = [social1, social2, social3]
+    limit_list = [social1, social2, social3, loot2, loot3]
 
     if floor_count == boss_floor:
         print(f"{boarder}\n")
@@ -30,7 +30,7 @@ def room_gen(floor_count, room_list, total_floors, player):
         time.sleep(1)
         print("You descend to the next floor...")
         time.sleep(1)
-        room_gen(floor_count, room_list, player)
+        room_gen(floor_count, room_list, total_floors, player)
     else:
         print(f"{boarder}\n")
         ending(player)

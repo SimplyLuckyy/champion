@@ -28,13 +28,13 @@ class Bat(Enemy):
         super().__init__()
         self.name = "Giant Bat"
         self.health = 40
-        self.attack = 5
-        self.defense = 10
+        self.attack = 7
+        self.defense = 12
 
 class Boss(Enemy):
     def __init__(self):
         super().__init__()
         self.name = "The Beast"
-        self.health = 100
-        self.attack = 12
+        self.health = 120
+        self.attack = 15
         self.defense = 15
