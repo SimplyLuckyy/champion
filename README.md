@@ -20,7 +20,7 @@ To run this project you will require:
 1. Clone the repository:
 
 ```
-git clone https://github.com/simplyluckyy/champion.git`
+git clone https://github.com/simplyluckyy/champion.git
 ```
 
 2. Move to the project directory:
