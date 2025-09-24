@@ -41,15 +41,14 @@ def battle(player, enemy):
 
 
 def healthcheck(player, enemy):
-    if player.health <= 0 and player.health > -(restore):
-        if player.potions > 0:
-            usepotion(player)
-            playerturn(player, enemy)
-            battle(player, enemy)
-        else:
-            print("Your Champion has fallen.\n")
-            print(boarder + "\nGAME OVER\n" + boarder)
-            exit()
+    if player.health <= 0 and player.health > -(restore) and player.potions > 0:
+        usepotion(player)
+        playerturn(player, enemy)
+        battle(player, enemy)
+    else:
+        print("Your Champion has fallen.\n")
+        print(boarder + "\nGAME OVER\n" + boarder)
+        exit()
 
 
 def playerturn(player, enemy):
@@ -102,7 +101,7 @@ def playerturn(player, enemy):
         dodamage(player, enemy, "strong")
     elif ismage == False and choice == "2" and player.energy < energy_cost:
         time.sleep(1)
-        print("But you didn't have enough energy!")
+        print("But you didn't have enough Stamina!")
         dodamage(player, enemy, "regular")
 
     # Mage Attacks
@@ -113,14 +112,14 @@ def playerturn(player, enemy):
         dodamage(player, enemy, "strong")
     elif ismage and choice == "2" and player.energy < (energy_cost + 10):
         time.sleep(1)
-        print("But you didn't have enough energy!")
+        print("But you didn't have enough Mana!")
         if player.energy >= energy_cost:
             dodamage(player, enemy, "regular")
         else:
              dodamage(player, enemy, "weak")
     elif ismage and choice == "1" and player.energy < energy_cost:
         time.sleep(1)
-        print("But you didn't have enough energy!")
+        print("But you didn't have enough Mana!")
         dodamage(player, enemy, "weak")
 
     # Optional Additions
@@ -202,7 +201,7 @@ def magicshield(player):
         view_stats()
         return magicshield(player)
     elif choice == "n":
-        print("Damge not negated\n")
+        print("Damage not negated\n")
         return False
     else:
         print("Invalid Choice\n")
@@ -269,7 +268,7 @@ def useelixir(player, damage_delt):
             view_stats()
             return useelixir(player, damage_delt)
         elif choice == "n":
-            print("Damge not reduced\n")
+            print("Damage not reduced\n")
             return damage_delt
         else:
             print("Invalid Choice\n")
@@ -278,6 +277,7 @@ def useelixir(player, damage_delt):
     elif items_list[6] in player.items:
         print(f"Would you like to reduce damage by {flatreductionstrong}? [y/n]\n")
         choice = input("> ").lower()
+        print("")
         if choice == "y":
             time.sleep(1)
             print(f"Damage Reduced by {flatreductionstrong}!\n")
@@ -288,7 +288,7 @@ def useelixir(player, damage_delt):
             view_stats()
             return useelixir(player, damage_delt)
         elif choice == "n":
-            print("Damge not reduced\n")
+            print("Damage not reduced\n")
             return damage_delt
         else:
             print("Invalid Choice\n")

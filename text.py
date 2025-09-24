@@ -10,7 +10,7 @@ def warrior_description():
     time.sleep(1)
     print(boarder)
     lines = ["You are the Warrior.\n",
-    "With both high Attack and Defense you are stalwart in your quest to acheive your rightful glory, regardless of who stands in your way.\n",
+    "With both high Attack and Defense you are stalwart in your quest to achieve your rightful glory, regardless of who stands in your way.\n",
     "No extra interactions will be unlocked, on account of your single minded dedication."]
     for line in lines:
         time.sleep(1)
@@ -21,7 +21,7 @@ def warrior_description():
 def rogue_description():
     time.sleep(1)
     print(boarder)
-    lines = ["You are the Rogue.\n", "Training to avoid and redirct otherwise fatal attacks has gifted you greater Defense and Stamina, at the cost of Attack.",
+    lines = ["You are the Rogue.\n", "Training to avoid and redirect otherwise fatal attacks has gifted you greater Defense and Stamina, at the cost of Attack.",
     "Your honed senses give you greater awareness to your surrounds.\n",
     "Few extra interactions may be unlocked depending on the floors encountered due to your Keen Eye."]
     for line in lines:
@@ -99,7 +99,7 @@ def introduction():
     "Of the few that survive to tell their tale, the recounting of what they found is never the same.",
     "The only point the seem to agree upon is what lies at the end: A beast unlike anything seen above and riches beyond imagination.",
     "Those that manage to surpass such as beast are heralded as Champions.\n",
-    "As a seasoned adventurer, that is the title you seak to claim to truly prove your mettle.",
+    "As a seasoned adventurer, that is the title you seek to claim to truly prove your mettle.",
     "But first..."]
     
     for line in lines:
@@ -137,13 +137,13 @@ def tutorialdescription(player):
     f"Potions regain 25 points of Health and {player.energyname}.",
     "They are used automatically after attacks that would be fatal.",
     "Otherwise you must use a turn to consume a potion during battle.\n",
-    "Rest Rooms are encounted every 5th room.",
+    "Rest Rooms are encountered every 5th room.",
     "They allow you to recover half of your currently missing health."]
     attacksmage = ["As a Mage, your energy is Mana.", 
     "Both your regular and strong attacks will cost Mana (5 and 15 respectively)",
-    "If your Mana is deplated you will instead attack with your staff, dealing very minor damage."]
+    "If your Mana is depleted you will instead attack with your staff, dealing very minor damage."]
     attacks = [f"As a {player.name}, your energy is Stamina.",
-    "Your strong attacks will cost Stamina (10), and once deplated you may only perform regular attacks."]
+    "Your strong attacks will cost Stamina (10), and once depleted you may only perform regular attacks."]
     time.sleep(1)
     print(boarder)
     time.sleep(1)
@@ -190,7 +190,7 @@ def first_floor_intro(player):
     print("You descend to the first floor...")
 
 def ending(player):
-    lines = ["The beast collapses back into a heap of bones, whatever possesed it expelled by your fatal strike.",
+    lines = ["The beast collapses back into a heap of bones, whatever possessed it expelled by your fatal strike.",
     "It will rise again for the next aspiring champion, but until then it will lie lifeless and dormant.\n",
     "The grand chest clicks open as if it sensed your triumph.",
     "Inside lies the proof of your achievement: Mountains of gold and equipment burning with arcane energy."
@@ -212,7 +212,7 @@ def socialmerchanttext():
     "When you approach an otherworldly echo emanates from their unmoving mouth.",
     '"I see yet another chooses to brave this crypt..."',
     '"I was once like you, so full of naive courage."',
-    '"Now I find my soul bound to this very room. The occasional adventurous fool my only company."',
+    '"Now I find my soul bound to this room. The occasional adventurous fool my only company."',
     '"I wish to aide you on your quest, lest you end up like me."',
     'They gesture to their side, "I have a wide stock of potions you may use to replenish your strength."',
     '"All ask for in return is gold."',
@@ -245,7 +245,7 @@ def socialadventurertext():
 
 def resttext(player, restore_health, restore_energy):
     lines = ["You find the next floor surprisingly empty.",
-    "It appears safe, and you take the rare oppurtunity to rest.\n",
+    "It appears safe, and you take the rare opportunity to rest.\n",
     f"You replenished {restore_health} Health and {restore_energy} {player.energyname}!\n"]
 
     for line in lines:

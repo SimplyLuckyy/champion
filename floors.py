@@ -145,11 +145,11 @@ def social2(player, started=False):
         time.sleep(1)
         print("In the room resides a pit of spikes.")
         time.sleep(1)
-        print("On the opposite wall sits a shimmering foutain.")
+        print("On the opposite wall sits a shimmering fountain.")
         time.sleep(1)
         print("There are platforms above the spikes providing a path.")
         time.sleep(1)
-        print("However, they seem to be moving in unpredictable patterns along invisable rails.\n")
+        print("However, they seem to be moving in unpredictable patterns along invisible rails.\n")
     if player.arcaneknowledge:
         time.sleep(1)
         print("[Arcane Knowledge] You sense the magic pulling at the platforms, allowing you to predict their movements.\n")
@@ -171,11 +171,11 @@ def social2(player, started=False):
             print("You left to the next room.")
         else:
             time.sleep(1)
-            print("Now on the other side you have a clearer look at the shimmering foutain.")
+            print("Now on the other side you have a clearer look at the shimmering fountain.")
             time.sleep(1)
             print("From it springs a fortifying elixir.")
             time.sleep(1)
-            print("Words glimmer above the foutain etched into the stone wall.\n")
+            print("Words glimmer above the fountain etched into the stone wall.\n")
             time.sleep(1)
             print('"Pay your respects to us with gold, O Adventurer, and see your boon strengthened"\n')
             spikes(player)
@@ -216,15 +216,17 @@ def social3(player, started=False):
     if choice == "1":
         temp = player.health
         time.sleep(1)
-        print("You Approach the nervous adventurer.\n")
+        print("You approach the nervous adventurer.\n")
         socialadventurertext()
         time.sleep(1)
         if not player.keeneye:
-            print("Without warning, they draw their sword and strike you!\n")
+            print("Without warning they draw their sword and strike you!\n")
             time.sleep(1)
             payoffencounter(player, player.health, "health")
         else:
-            print("[Keen Eye] You notice them grip on their sword's hilt tighter. They seem hesitant.\n")
+            print("[Keen Eye] You notice them grip on their sword's hilt tighter, preparing to stike.")
+            time.sleep(1)
+            print("You easily dodge the attack!\n")
         if temp == 1 and not player.keeneye:
             print("You escape to the next room!\n")
         else:
@@ -279,7 +281,7 @@ def adventurer(player):
         time.sleep(1)
         print('"I hardly know what I\'m doing here."')
         time.sleep(1)
-        print('"I heard there was gold to be made here, but I don\'t think I\'m cut out for this."')
+        print('"I heard there was gold to be made, but I don\'t think I\'m cut out for this."')
         time.sleep(1)
         print('"Take this as my apology. Not Like I need it anymore..."\n')
         time.sleep(1)

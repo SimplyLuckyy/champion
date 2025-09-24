@@ -2,7 +2,7 @@ class Player:
     def __init__(self):
         self.name = None
         self.healthmax = 100
-        self.energymax = 100
+        self.energymax = 50
         self.health = 100
         self.energy = 50
         self.gold = 15
@@ -55,8 +55,8 @@ class Debug(Player):
         self.energy = 300
         self.gold = 30
         self.potions = 10
-        self.attack = 40
-        self.defense = 40
+        self.attack = 25
+        self.defense = 25
         self.keeneye = True
         self.arcaneknowledge = True
 
