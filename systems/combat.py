@@ -41,14 +41,15 @@ def battle(player, enemy):
 
 
 def healthcheck(player, enemy):
-    if player.health <= 0 and player.health > -(restore) and player.potions > 0:
-        usepotion(player)
-        playerturn(player, enemy)
-        battle(player, enemy)
-    else:
-        print("Your Champion has fallen.\n")
-        print(boarder + "\nGAME OVER\n" + boarder)
-        exit()
+    if player.health <= 0:
+        if player.health > -(restore) and player.potions > 0:
+            usepotion(player)
+            playerturn(player, enemy)
+            battle(player, enemy)
+        else:
+            print("Your Champion has fallen.\n")
+            print(boarder + "\nGAME OVER\n" + boarder)
+            exit()
 
 
 def playerturn(player, enemy):
